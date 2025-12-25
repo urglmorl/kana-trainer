@@ -1,0 +1,7 @@
+services:
+  kana-trainer:
+    image: your-registry.example.com/kana-trainer:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+

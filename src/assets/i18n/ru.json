@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Тренажёр каны"
+  },
+  "settings": {
+    "title": "Настройки",
+    "mode": "Режим тренировки",
+    "modeOptions": {
+      "romajiToKana": "Ромадзи → Кана",
+      "kanaToRomaji": "Кана → Ромадзи"
+    },
+    "scripts": "Письменность",
+    "scriptOptions": {
+      "hiragana": "Хирагана",
+      "katakana": "Катакана"
+    },
+    "scriptDescriptions": {
+      "hiragana": "Японские слова",
+      "katakana": "Иностранные слова и звуки"
+    },
+    "categories": "Категории",
+    "categoryOptions": {
+      "basic": "Базовые (годзюон)",
+      "dakuten": "Дакутэн",
+      "handakuten": "Хандакутэн",
+      "yoon": "Ёон",
+      "smallVowels": "Малые гласные",
+      "extendedKatakana": "Расширенная катакана"
+    },
+    "categoryDescriptions": {
+      "basic": "Основные 46 знаков",
+      "dakuten": "Звонкие согласные",
+      "handakuten": "Звуки на П",
+      "yoon": "Составные звуки",
+      "smallVowels": "Гортанные смычки",
+      "extendedKatakana": "Иностранные звуки"
+    },
+    "hints": {
+      "chooseOne": "один вариант",
+      "selectMultiple": "несколько вариантов"
+    },
+    "start": "Начать",
+    "validationError": "Выберите хотя бы одну письменность и одну категорию",
+    "emptyPoolError": "Выбранные категории не содержат символов для данной письменности. Расширенная катакана работает только с катаканой.",
+    "poolSize": "{{count}} символов доступно"
+  },
+  "trainer": {
+    "reveal": "Показать",
+    "next": "Далее",
+    "back": "К настройкам",
+    "itemCount": "Символ #{{count}}"
+  },
+  "theme": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "system": "Системная"
+  },
+  "language": {
+    "en": "English",
+    "ru": "Русский",
+    "no": "Norsk"
+  }
+}
+

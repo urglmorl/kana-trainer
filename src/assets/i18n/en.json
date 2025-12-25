@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Kana Trainer"
+  },
+  "settings": {
+    "title": "Settings",
+    "mode": "Training Mode",
+    "modeOptions": {
+      "romajiToKana": "Romaji → Kana",
+      "kanaToRomaji": "Kana → Romaji"
+    },
+    "scripts": "Scripts",
+    "scriptOptions": {
+      "hiragana": "Hiragana",
+      "katakana": "Katakana"
+    },
+    "scriptDescriptions": {
+      "hiragana": "Native Japanese words",
+      "katakana": "Foreign words & sounds"
+    },
+    "categories": "Categories",
+    "categoryOptions": {
+      "basic": "Basic (gojūon)",
+      "dakuten": "Dakuten",
+      "handakuten": "Handakuten",
+      "yoon": "Yōon",
+      "smallVowels": "Small vowels",
+      "extendedKatakana": "Extended katakana"
+    },
+    "categoryDescriptions": {
+      "basic": "Core 46 characters",
+      "dakuten": "Voiced consonants",
+      "handakuten": "P-sound marks",
+      "yoon": "Combination sounds",
+      "smallVowels": "Glottal stops",
+      "extendedKatakana": "Foreign sounds"
+    },
+    "hints": {
+      "chooseOne": "choose one",
+      "selectMultiple": "select multiple"
+    },
+    "start": "Start",
+    "validationError": "Please select at least one script and one category",
+    "emptyPoolError": "Selected categories have no characters for chosen scripts. Extended katakana only works with katakana.",
+    "poolSize": "{{count}} characters available"
+  },
+  "trainer": {
+    "reveal": "Reveal",
+    "next": "Next",
+    "back": "Back to settings",
+    "itemCount": "Item #{{count}}"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "en": "English",
+    "ru": "Русский",
+    "no": "Norsk"
+  }
+}
+

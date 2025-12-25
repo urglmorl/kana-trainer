@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Kana-trener"
+  },
+  "settings": {
+    "title": "Innstillinger",
+    "mode": "Treningsmodus",
+    "modeOptions": {
+      "romajiToKana": "Romaji → Kana",
+      "kanaToRomaji": "Kana → Romaji"
+    },
+    "scripts": "Skriftsystemer",
+    "scriptOptions": {
+      "hiragana": "Hiragana",
+      "katakana": "Katakana"
+    },
+    "scriptDescriptions": {
+      "hiragana": "Japanske ord",
+      "katakana": "Fremmedord og lyder"
+    },
+    "categories": "Kategorier",
+    "categoryOptions": {
+      "basic": "Grunnleggende (gojūon)",
+      "dakuten": "Dakuten",
+      "handakuten": "Handakuten",
+      "yoon": "Yōon",
+      "smallVowels": "Små vokaler",
+      "extendedKatakana": "Utvidet katakana"
+    },
+    "categoryDescriptions": {
+      "basic": "Kjerne 46 tegn",
+      "dakuten": "Stemte konsonanter",
+      "handakuten": "P-lyder",
+      "yoon": "Kombinasjonslyder",
+      "smallVowels": "Glottale stopp",
+      "extendedKatakana": "Fremmede lyder"
+    },
+    "hints": {
+      "chooseOne": "velg én",
+      "selectMultiple": "velg flere"
+    },
+    "start": "Start",
+    "validationError": "Velg minst ett skriftsystem og én kategori",
+    "emptyPoolError": "Valgte kategorier har ingen tegn for valgte skriftsystemer. Utvidet katakana fungerer bare med katakana.",
+    "poolSize": "{{count}} tegn tilgjengelig"
+  },
+  "trainer": {
+    "reveal": "Vis",
+    "next": "Neste",
+    "back": "Tilbake til innstillinger",
+    "itemCount": "Element #{{count}}"
+  },
+  "theme": {
+    "light": "Lys",
+    "dark": "Mørk",
+    "system": "System"
+  },
+  "language": {
+    "en": "English",
+    "ru": "Русский",
+    "no": "Norsk"
+  }
+}
+

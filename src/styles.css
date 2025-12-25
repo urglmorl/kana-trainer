@@ -1,0 +1,102 @@
+/* Self-hosted fonts via fontsource */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/noto-sans-jp/400.css";
+@import "@fontsource/noto-sans-jp/500.css";
+@import "@fontsource/noto-sans-jp/600.css";
+@import "@fontsource/noto-sans-jp/700.css";
+
+@import "tailwindcss";
+
+/* Dark mode class-based approach */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* CSS custom properties for theming */
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-japanese: "Noto Sans JP", "Hiragino Kaku Gothic Pro", "Meiryo", "Yu Gothic", sans-serif;
+}
+
+/* Global styles */
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Japanese font class */
+.font-japanese {
+  font-family: var(--font-japanese);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-gray-900 ring-offset-2 dark:ring-gray-100 dark:ring-offset-gray-950;
+}
+
+/* Button focus override */
+button:focus-visible {
+  @apply outline-none ring-2 ring-gray-900 ring-offset-2 dark:ring-gray-100 dark:ring-offset-gray-950;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900;
+}
+
+/* Scrollbar styling (WebKit) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+

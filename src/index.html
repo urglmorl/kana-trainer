@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kana Trainer</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Train your Japanese kana recognition - hiragana and katakana practice">
+  <meta name="theme-color" content="#111827">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="antialiased">
+  <app-root></app-root>
+  
+  <!-- Prevent flash of unstyled content for theme -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('kana-trainer-theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+---
+alwaysApply: true
+description: Global Clean Code & Engineering Standards for TypeScript/Angular 19/Next.js projects (universal)
+globs: "**/*"
+---
+
+# Global Clean Code & Engineering Standards
+
+> Scope: TypeScript / JavaScript codebases using Angular 19 and/or Next.js (App Router), plus shared tooling.  
+> Goal: Maximize readability, maintainability, testability, and safety.  
+> Enforcement: Apply to all files unless a narrower project rule overrides this one.
+
+## 0) What "clean code" means (operational criteria)
+
+- **Readable**: Code expresses intent plainly; names are self‑explanatory; comments explain *why*, not *what*.
+- **Simple**: Prefer the simplest design that works (**KISS**). Avoid premature abstraction. **YAGNI** by default.
+- **DRY**: Eliminate repetition; extract shared logic; if two places diverge in purpose, do not force reuse.
+- **Small & Focused**: Functions ≤ 25 LOC where practical; ≤ 3 params (prefer objects), single reason to change (SRP).
+- **Low Complexity**: Cyclomatic complexity < 10 per function; if exceeded, refactor or split.
+- **Consistent**: One lint/format toolchain; no ad‑hoc patterns.
+- **Typed & Safe**: `strict` TS, no `any` (except tightly scoped). Guard inputs and outputs.
+- **Tested**: Unit tests for logic; integration/e2e for flows and contracts; tests run in CI.
+- **Observable**: Errors are detectable; logs are structured; metrics and tracing are possible.
+- **Documented**: Public APIs, architectural decisions, and runbooks are documented and co‑located.
+
+## 1) Ground rules for AI changes (Cursor execution protocol)
+
+1. **Plan first**: Summarize intent, affected files, and risks. Ask minimal clarifying questions only if truly blocking.
+2. **Search & attach context**: Use codebase search and attach nearest files before edits:
+   - For Angular edits: attach `@angular.json`, nearest `@src/**/*.ts`, `@src/**/*.html`, style files.
+   - For Next.js edits: attach `@next.config.*`, `@app/**/*`, `@pages/**/*` (legacy), route handlers.
+   - Always attach `@package.json`, relevant `@tsconfig*.json`, `@eslint*`, `@.prettierrc*`.
+3. **Follow style tools**: Conform to ESLint & Prettier; do not fight local configs.
+4. **Write or update tests** *in the same patch*. If not possible, explicitly mark a TODO:test with a short spec.
+5. **Small diffs**: Prefer incremental, composable commits. Explain changes and provide a short migration note if needed.
+6. **No fabrication**: Never invent APIs, env vars, or business rules. If unknown, surface as a TODO with rationale.
+7. **Idempotence**: Rerunning generation must not duplicate code or config.
+8. **Enforce size guardrails** (see §15) before committing code; if violated, refactor plan is mandatory.
+
+## 2) Naming & structure
+
+- **Files & folders**
+  - Kebab‑case for file names: `order-history.component.ts`, `user-service.ts`, `create-order.ts`.
+  - Tests mirror source: `foo.ts` → `foo.spec.ts` (or `foo.test.ts` in Next.js).
+  - Group by feature/domain over technical layer where feasible.
+- **Identifiers**
+  - Classes/Interfaces: `PascalCase`. Variables/functions: `camelCase`. Constants: `UPPER_SNAKE_CASE`.
+  - Booleans read as predicates: `isLoading`, `hasError`, `shouldRetry`.
+  - Avoid abbreviations; prefer full words (`customer` not `cust`).
+- **Modules / packages**
+  - Keep public surface minimal; export only what’s necessary (`index.ts` barrels where helpful, not by default).
+
+## 3) TypeScript standards
+
+- Enable and respect: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`.
+- Prefer **types** over **interfaces** for unions/intersections and when composing; interfaces for public OO contracts.
+- Avoid `any`. If unavoidable, wrap in a narrow type guard with a TODO to remove.
+- Favor `readonly` and immutability; avoid in‑place mutations where practical.
+- Use discriminated unions for state machines and error/result handling.
+- Use `unknown` at boundaries (I/O), validate then narrow with type guards / zod/valibot/yup (project choice).
+
+## 4) Error handling & logging
+
+- Prefer **explicit return types**. For recoverable operations use `Result<T,E>` or a narrow error class hierarchy.
+- Never swallow errors. Provide user‑facing messages separate from internal details.
+- Structure logs as objects (message, context, correlationId). Avoid console noise in shipped code.
+- Do not leak secrets in errors or logs.
+
+## 5) Testing policy
+
+- **Unit**: Pure logic, small surface, no I/O. Aim for fast and deterministic.
+- **Integration**: Module boundaries (HTTP, DB, fs) via test containers or pact/mocks.
+- **E2E**: Critical user journeys only (auth, checkout, publish flow).
+- **Coverage**: Target statements/branches ~80% where meaningful; do not chase 100% at the expense of value.
+- Test names describe behavior; Given/When/Then tables where complex.
+- Snapshot tests only for stable, intentional output (avoid brittle UI snapshots).
+
+## 6) Angular 19 specifics
+
+- Prefer **standalone components** and the **new control flow** (`@if`, `@for`, `@switch`) for template clarity.
+- Use **Signals** for local reactive state; bridge RxJS → signals at boundaries. Keep effects side‑effect‑free and idempotent.
+- **Change detection**: Use `OnPush` semantics; avoid binding heavy computations; memoize with `computed`.
+- **Templates**: Keep logic minimal; push complex logic into component class or pure pipes.
+- **Forms**: Typed reactive forms; custom controls implement `ControlValueAccessor`; validation is explicit and typed.
+- **Routing**: Lazy‑load routes; keep resolvers simple and cancellable.
+- **HTTP**: Typed clients; interceptors for auth/retry/backoff; never ignore unsubscribe—prefer takeUntil/auto teardown.
+- **Performance**: `trackBy` in `@for` loops; virtualization for large lists; avoid unnecessary `*ngFor` over heavy objects.
+- **Styling**: Co‑locate SCSS with components; use CSS vars; avoid deep selectors.
+
+## 7) Next.js (App Router) specifics
+
+- **Server Components by default**; add `"use client"` only when necessary.
+- **Data fetching**: Prefer server‑side `async` functions; leverage fetch caching and revalidation (`{ cache, next: { revalidate } }`).
+- **Routing**: Use route handlers for APIs; validate all inputs at the edge of the app.
+- **State**: Keep global client state minimal; prefer URL/Server State; use React Query or signals‑compatible libs only when justified.
+- **Performance**: Code‑split via route segments; stream and progressively render; optimize images and fonts; avoid client‑only heavy libs.
+- **Security**: Use secure cookies (`httpOnly`, `secure`, `sameSite`), CSRF where needed, and escape untrusted HTML.
+
+## 8) Security checklist (minimum)
+
+- Validate and sanitize all untrusted input; never trust client fields.
+- Avoid `eval`/Function; forbid dynamic `innerHTML` (Angular sanitization only with explicit `DomSanitizer` and justification).
+- Secrets from env only; no secrets committed.
+- Apply content security policy (CSP) where possible; set correct CORS; avoid wildcard origins in prod.
+- Use dependency scanning (npm audit, osv) and pin critical versions; avoid abandoned packages.
+- Authorize *after* authenticate; enforce least privilege on API endpoints.
+
+## 9) Performance checklist
+
+- Measure first; add metrics around critical paths.
+- Keep bundles small; tree‑shake; avoid large polyfills and dead code.
+- Cache aggressively where safe (HTTP, fetch cache, memoization).
+- Avoid unnecessary rerenders (Angular: signals + OnPush + `trackBy`; React: memoization, key discipline).
+- Prefer streaming/edge for low latency where appropriate.
+
+## 10) Documentation & DX
+
+- Co‑locate README per package/module with:
+  - Purpose, public API, setup, examples, limitations.
+- Maintain **ADR** (architecture decision records) for significant choices.
+- Use Conventional Commits; generate changelogs.
+- Provide minimal make/npm scripts: `build`, `start`, `test`, `lint`, `typecheck`, `e2e`.
+
+## 11) Definition of Done (per change)
+
+- [ ] Code follows lint/format and this rule.
+- [ ] Types are strict; no new `any`/`@ts-ignore`.
+- [ ] Tests added/updated and passing locally.
+- [ ] Security/performance implications considered (notes inline if relevant).
+- [ ] Public docs updated (README/ADR/changelog).
+- [ ] **Size guardrails respected** (see §15), or a refactor plan is included.
+- [ ] Migration notes if breaking.
+
+## 12) Principles to follow (explicit)
+
+- **SOLID**: SRP, OCP, LSP, ISP, DIP. Prefer composition over inheritance; keep interfaces small; depend on abstractions.
+- **SoC** (Separation of Concerns): Isolate domain, app, and infra concerns; avoid cross‑layer leakage.
+- **LoD** (Law of Demeter): Talk only to your immediate collaborators; avoid train wrecks (`a.b.c.d()`).
+- **CQS / CQRS (when justified)**: Separate query from command; for complex domains, consider CQRS with clear boundaries.
+- **Fail Fast**: Validate early; throw early; avoid cascading errors.
+- **Design by Contract**: Pre-/post‑conditions via types/validators.
+- **Immutability by default**: Mutate only with clear intent.
+- **Tell, Don’t Ask**: Prefer sending commands to objects over exposing their internals.
+- **SLAP**: Single level of abstraction per function/block.
+
+## 13) Anti‑patterns (reject or refactor)
+
+- Large, multi‑purpose functions or files; hidden singletons; static mutable state.
+- Circular dependencies; god services/components.
+- Commented‑out code or dead code left behind.
+- Catch‑all `try/catch` suppressing errors; bare `catch {}`.
+- Overuse of inheritance; prefer composition.
+- Magical constants; put in typed config with defaults.
+- Excessive reuse harming clarity (**DRY ≠ WET abstractions**).
+
+## 14) Minimal toolchain expectations (do not auto‑change versions)
+
+- ESLint + Prettier configured; follow local rules.
+- TypeScript with `strict` mode.
+- Test runner (Jest/Vitest/Angular TestBed) chosen by repo—respect existing choice.
+- CI runs: `lint`, `typecheck`, `test`. Add `build` where applicable.
+
+## 15) Size guardrails (strict, self‑enforced by the AI)
+
+**Goal:** Keep non‑exempt TypeScript files and standalone functions small to preserve readability and maintainability.
+
+- **File limit (non‑exempt .ts)**: If a TypeScript source file exceeds **200 LOC**, treat it as a **refactor signal**.  
+  - **Exemptions**:  
+    - Angular component files `**/*.component.ts` **when they contain heavy UI/business wiring**.  
+    - NestJS controllers and services: `**/*.controller.ts`, `**/*.service.ts`.  
+  - **Notes**: Even for exempt files, prefer refactoring into smaller units when feasible (facades, stores, feature modules). Do **not** expand an already large file without strong justification and a plan to split.
+
+- **Function limit (non‑exempt)**: Any **standalone function** or method body **> 200 LOC** is a refactor signal.  
+  - Split by behavior: extract pure helpers; isolate side effects; separate concerns; apply SLAP.
+
+- **AI editing protocol (must follow):**
+  1. **Estimate size before edit**: If target file seems near/over 200 LOC, propose an extraction plan (filenames, symbols, ownership).
+  2. **Never increase LOC over the threshold** in non‑exempt files; instead, extract code to new modules and import.
+  3. **For existing over‑limit files**: avoid adding lines; submit a PR that first extracts and then applies the change.
+  4. Document the refactor briefly in the PR description (what moved, why, and how to revert).
+
+---
+## Appendix A — Angular snippets (reference)
+
+**Signalized local state:**
+```ts
+const loading = signal(false);
+const data = signal<Item[] | null>(null);
+const error = signal<string | null>(null);
+
+const count = computed(() => data()?.length ?? 0);
+effect(() => {
+  // side effects guarded
+});
+```
+
+**Change detection discipline in template:**
+```html
+@for (item of items(); track item.id) {
+  <app-item [item]="item" />
+}
+```
+
+**ControlValueAccessor skeleton:**
+```ts
+export class MyInput implements ControlValueAccessor {
+  private onChange = (_: unknown) => {};
+  private onTouched = () => {};
+  writeValue(v: string) { /* ... */ }
+  registerOnChange(fn: (_: string) => void) { this.onChange = fn; }
+  registerOnTouched(fn: () => void) { this.onTouched = fn; }
+  setDisabledState(isDisabled: boolean) { /* ... */ }
+}
+```
+
+---
+## Appendix B — Next.js App Router snippets (reference)
+
+**Server component data fetching with revalidation:**
+```ts
+export default async function Page() {
+  const res = await fetch("https://api.example.com/items", { next: { revalidate: 60 } });
+  const items: Item[] = await res.json();
+  return <List items={items} />;
+}
+```
+
+**Route handler with validation:**
+```ts
+// app/api/orders/route.ts
+import { z } from "zod";
+const Schema = z.object({ id: z.string().uuid() });
+
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const parse = Schema.safeParse({ id: searchParams.get("id") });
+  if (!parse.success) return new Response("Bad Request", { status: 400 });
+  // ...
+}
+```
+
+---
+## Appendix C — Review checklist for PR authors & reviewers
+
+- Architecture: Is the change aligned with domain boundaries?
+- Readability: Are names clear and consistent? Any deep nesting?
+- Tests: Do tests cover critical paths and edge cases?
+- Security: Any new inputs? Are they validated?
+- Performance: Any loops over large collections? Any repeated expensive operations?
+- DX: Are scripts/docs updated? Is the change easy to run locally?
