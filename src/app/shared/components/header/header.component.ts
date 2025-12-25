@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { TranslocoPipe } from '@jsverse/transloco';
-import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
-import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
+import {Component} from '@angular/core';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {LanguageSwitcherComponent} from '../language-switcher/language-switcher.component';
+import {ThemeToggleComponent} from '../theme-toggle/theme-toggle.component';
 
 /**
  * Хедер приложения с переключателями языка и темы.

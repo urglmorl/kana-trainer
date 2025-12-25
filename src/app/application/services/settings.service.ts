@@ -1,12 +1,13 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
-import { SETTINGS_REPOSITORY, KANA_POOL_BUILDER } from '../../domain/tokens';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {
-  TrainerSettings,
-  DEFAULT_SETTINGS,
-  Script,
   Category,
+  DEFAULT_SETTINGS,
+  KANA_POOL_BUILDER,
+  Script,
+  SETTINGS_REPOSITORY,
   TrainerMode,
-} from '../../domain/models/trainer-settings';
+  TrainerSettings
+} from '../../domain';
 
 /**
  * Сервис управления настройками тренажёра.

@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
+import {Component, inject, signal} from '@angular/core';
+import {TranslocoPipe, TranslocoService} from '@jsverse/transloco';
 
 const STORAGE_KEY = 'kana-trainer-lang';
 

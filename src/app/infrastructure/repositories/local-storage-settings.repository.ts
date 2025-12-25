@@ -1,7 +1,6 @@
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import type { ISettingsRepository } from '../../domain/ports/settings-repository';
-import type { TrainerSettings } from '../../domain/models/trainer-settings';
+import {inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
+import type {ISettingsRepository, TrainerSettings} from '../../domain';
 
 const STORAGE_KEY = 'kana-trainer-settings';
 

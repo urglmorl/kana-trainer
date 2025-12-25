@@ -1,4 +1,4 @@
-import { KanaItem } from "./kana.types";
+import {KanaItem} from "./kana.types";
 
 
 export const EXTENDED_KATAKANA: KanaItem[] = [

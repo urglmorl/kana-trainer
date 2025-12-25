@@ -1,4 +1,4 @@
-import { TrainerSettings } from '../models/trainer-settings';
+import {TrainerSettings} from '../models/trainer-settings';
 
 /**
  * Порт для сохранения и загрузки настроек тренажёра.

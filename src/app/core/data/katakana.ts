@@ -1,4 +1,4 @@
-import type { KanaItem } from './kana.types';
+import type {KanaItem} from './kana.types';
 
 export const KATAKANA: KanaItem[] = [
   // basic

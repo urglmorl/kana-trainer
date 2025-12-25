@@ -1,15 +1,11 @@
-import {
-  ApplicationConfig,
-  provideZoneChangeDetection,
-  isDevMode,
-} from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import { provideTransloco } from '@jsverse/transloco';
+import {ApplicationConfig, isDevMode, provideZoneChangeDetection,} from '@angular/core';
+import {provideRouter} from '@angular/router';
+import {provideHttpClient} from '@angular/common/http';
+import {provideTransloco} from '@jsverse/transloco';
 
-import { routes } from './app.routes';
-import { TranslocoHttpLoader } from './transloco-loader';
-import { appProviders } from './infrastructure/di/app.providers';
+import {routes} from './app.routes';
+import {TranslocoHttpLoader} from './transloco-loader';
+import {appProviders} from './infrastructure/di/app.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [

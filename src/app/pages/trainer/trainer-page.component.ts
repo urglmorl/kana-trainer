@@ -1,9 +1,9 @@
-import { Component, inject, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslocoPipe } from '@jsverse/transloco';
-import { TrainerSessionService } from '../../application/services/trainer-session.service';
-import { SettingsService } from '../../application/services/settings.service';
-import { ButtonComponent } from '../../shared/ui';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {TrainerSessionService} from '../../application/services/trainer-session.service';
+import {SettingsService} from '../../application/services/settings.service';
+import {ButtonComponent} from '../../shared/ui';
 
 /**
  * Страница тренировки.
@@ -117,7 +117,7 @@ export class TrainerPageComponent implements OnInit {
       // Пробуем запустить сессию с текущими настройками
       if (this.settingsService.isValid()) {
         this.session.start(this.settingsService.settings());
-        
+
         // Проверяем, что сессия успешно запустилась (пул не пустой)
         if (!this.session.isActive()) {
           this.router.navigate(['/']);

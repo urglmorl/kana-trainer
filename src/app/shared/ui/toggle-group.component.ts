@@ -1,12 +1,6 @@
-import {
-  Component,
-  computed,
-  forwardRef,
-  input,
-  model,
-} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { cn } from './utils';
+import {Component, computed, forwardRef, input, model,} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {cn} from './utils';
 
 /**
  * Компонент группы переключателей (toggle group).

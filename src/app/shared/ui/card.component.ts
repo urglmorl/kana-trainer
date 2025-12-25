@@ -1,5 +1,5 @@
-import { Component, computed, input } from '@angular/core';
-import { cn } from './utils';
+import {Component, computed, input} from '@angular/core';
+import {cn} from './utils';
 
 /**
  * Компонент карточки для группировки контента.

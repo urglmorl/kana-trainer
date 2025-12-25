@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
+import {Component, inject} from '@angular/core';
+import {ThemeService} from '../../services/theme.service';
 
 /**
  * Компонент переключения темы (светлая/тёмная).

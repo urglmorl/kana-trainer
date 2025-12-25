@@ -1,4 +1,4 @@
-import type { Script, Category } from '../../core/data/kana.types';
+import type {Category, Script} from '../../core/data/kana.types';
 
 /**
  * Режим тренировки.

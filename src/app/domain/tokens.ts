@@ -1,9 +1,9 @@
-import { InjectionToken } from '@angular/core';
-import type { ISettingsRepository } from './ports/settings-repository';
-import type { IKanaPoolBuilder } from './ports/kana-pool-builder';
-import type { IRandomGenerator } from './ports/random-generator';
-import type { IPromptAnswerMapper } from './ports/prompt-answer-mapper';
-import type { KanaItem } from '../core/data/kana.types';
+import {InjectionToken} from '@angular/core';
+import type {ISettingsRepository} from './ports/settings-repository';
+import type {IKanaPoolBuilder} from './ports/kana-pool-builder';
+import type {IRandomGenerator} from './ports/random-generator';
+import type {IPromptAnswerMapper} from './ports/prompt-answer-mapper';
+import type {KanaItem} from '../core/data';
 
 /**
  * Токен для инъекции репозитория настроек.

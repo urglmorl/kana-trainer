@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import type { IPromptAnswerMapper, PromptAnswer } from '../../domain/ports/prompt-answer-mapper';
-import type { TrainerSettings } from '../../domain/models/trainer-settings';
-import type { KanaItem } from '../../core/data/kana.types';
+import {Injectable} from '@angular/core';
+import type {IPromptAnswerMapper, PromptAnswer, TrainerSettings} from '../../domain';
+import type {KanaItem} from '../../core/data';
 
 /**
  * Реализация маппера prompt/answer.

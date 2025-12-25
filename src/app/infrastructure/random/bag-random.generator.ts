@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import type { IRandomGenerator } from '../../domain/ports/random-generator';
+import {Injectable} from '@angular/core';
+import type {IRandomGenerator} from '../../domain';
 
 /**
  * Реализация генератора случайных элементов с алгоритмом "мешок" (bag).
- * 
+ *
  * Алгоритм:
  * 1. Перемешиваем пул и извлекаем элементы по одному.
  * 2. Когда мешок пуст — перемешиваем снова.

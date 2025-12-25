@@ -1,14 +1,9 @@
-import { Provider } from '@angular/core';
-import {
-  SETTINGS_REPOSITORY,
-  KANA_POOL_BUILDER,
-  RANDOM_GENERATOR,
-  PROMPT_ANSWER_MAPPER,
-} from '../../domain/tokens';
-import { LocalStorageSettingsRepository } from '../repositories/local-storage-settings.repository';
-import { DefaultKanaPoolBuilder } from '../pool/default-kana-pool.builder';
-import { BagRandomGenerator } from '../random/bag-random.generator';
-import { DefaultPromptAnswerMapper } from '../mappers/default-prompt-answer.mapper';
+import {Provider} from '@angular/core';
+import {KANA_POOL_BUILDER, PROMPT_ANSWER_MAPPER, RANDOM_GENERATOR, SETTINGS_REPOSITORY,} from '../../domain';
+import {LocalStorageSettingsRepository} from '../repositories/local-storage-settings.repository';
+import {DefaultKanaPoolBuilder} from '../pool/default-kana-pool.builder';
+import {BagRandomGenerator} from '../random/bag-random.generator';
+import {DefaultPromptAnswerMapper} from '../mappers/default-prompt-answer.mapper';
 
 /**
  * Провайдеры для DI на уровне приложения.

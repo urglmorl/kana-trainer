@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslocoPipe } from '@jsverse/transloco';
-import { SettingsService } from '../../application/services/settings.service';
-import { TrainerSessionService } from '../../application/services/trainer-session.service';
-import type { TrainerMode, Script, Category } from '../../domain/models/trainer-settings';
-import { ButtonComponent } from '../../shared/ui';
+import {Component, inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {TranslocoPipe} from '@jsverse/transloco';
+import {SettingsService} from '../../application/services/settings.service';
+import {TrainerSessionService} from '../../application/services/trainer-session.service';
+import type {Category, Script, TrainerMode} from '../../domain';
+import {ButtonComponent} from '../../shared/ui';
 
 /**
  * Страница настроек тренажёра.
@@ -48,7 +48,7 @@ import { ButtonComponent } from '../../shared/ui';
                 </svg>
               </div>
             }
-            
+
             <!-- Preview -->
             <div class="mb-4 flex flex-col items-center gap-2">
               <span class="text-3xl font-bold text-gray-900 dark:text-gray-100">ka</span>
@@ -57,7 +57,7 @@ import { ButtonComponent } from '../../shared/ui';
               </svg>
               <span class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">か</span>
             </div>
-            
+
             <!-- Label -->
             <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
               {{ 'settings.modeOptions.romajiToKana' | transloco }}
@@ -82,7 +82,7 @@ import { ButtonComponent } from '../../shared/ui';
                 </svg>
               </div>
             }
-            
+
             <!-- Preview -->
             <div class="mb-4 flex flex-col items-center gap-2">
               <span class="text-3xl font-bold text-gray-900 dark:text-gray-100">か</span>
@@ -91,7 +91,7 @@ import { ButtonComponent } from '../../shared/ui';
               </svg>
               <span class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">ka</span>
             </div>
-            
+
             <!-- Label -->
             <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
               {{ 'settings.modeOptions.kanaToRomaji' | transloco }}
@@ -129,19 +129,19 @@ import { ButtonComponent } from '../../shared/ui';
                 </svg>
               </div>
             }
-            
+
             <!-- Preview Characters -->
             <div class="mb-3 flex items-center gap-3">
               <span class="text-4xl font-bold text-gray-900 dark:text-gray-100">あ</span>
               <span class="text-4xl font-bold text-gray-600 dark:text-gray-400">い</span>
               <span class="text-4xl font-bold text-gray-400 dark:text-gray-500">う</span>
             </div>
-            
+
             <!-- Label -->
             <span class="text-base font-medium text-gray-700 dark:text-gray-300">
               {{ 'settings.scriptOptions.hiragana' | transloco }}
             </span>
-            
+
             <!-- Description -->
             <span class="mt-1 text-xs text-gray-500 dark:text-gray-400">
               {{ 'settings.scriptDescriptions.hiragana' | transloco }}
@@ -166,19 +166,19 @@ import { ButtonComponent } from '../../shared/ui';
                 </svg>
               </div>
             }
-            
+
             <!-- Preview Characters -->
             <div class="mb-3 flex items-center gap-3">
               <span class="text-4xl font-bold text-gray-900 dark:text-gray-100">ア</span>
               <span class="text-4xl font-bold text-gray-600 dark:text-gray-400">イ</span>
               <span class="text-4xl font-bold text-gray-400 dark:text-gray-500">ウ</span>
             </div>
-            
+
             <!-- Label -->
             <span class="text-base font-medium text-gray-700 dark:text-gray-300">
               {{ 'settings.scriptOptions.katakana' | transloco }}
             </span>
-            
+
             <!-- Description -->
             <span class="mt-1 text-xs text-gray-500 dark:text-gray-400">
               {{ 'settings.scriptDescriptions.katakana' | transloco }}

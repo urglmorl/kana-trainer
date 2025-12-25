@@ -1,5 +1,5 @@
-import type { KanaItem } from '../../core/data/kana.types';
-import type { TrainerSettings } from '../models/trainer-settings';
+import type {KanaItem} from '../../core/data';
+import type {TrainerSettings} from '../models/trainer-settings';
 
 /**
  * Порт для построения пула kana-элементов на основе настроек.

@@ -1,12 +1,7 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
-import {
-  KANA_POOL_BUILDER,
-  RANDOM_GENERATOR,
-  PROMPT_ANSWER_MAPPER,
-} from '../../domain/tokens';
-import type { TrainerSettings } from '../../domain/models/trainer-settings';
-import type { KanaItem } from '../../core/data/kana.types';
-import type { PromptAnswer } from '../../domain/ports/prompt-answer-mapper';
+import {computed, inject, Injectable, signal} from '@angular/core';
+import type {PromptAnswer, TrainerSettings} from '../../domain';
+import {KANA_POOL_BUILDER, PROMPT_ANSWER_MAPPER, RANDOM_GENERATOR,} from '../../domain';
+import type {KanaItem} from '../../core/data';
 
 /**
  * Состояние тренировочной сессии.
@@ -58,7 +53,7 @@ export class TrainerSessionService {
    */
   start(settings: TrainerSettings): void {
     const pool = this.poolBuilder.buildPool(settings);
-    
+
     if (pool.length === 0) {
       console.warn('Empty pool, cannot start session');
       return;
@@ -68,7 +63,7 @@ export class TrainerSessionService {
     this.randomGenerator.init(pool);
     this.poolSize.set(pool.length);
     this.itemCount.set(0);
-    
+
     this.nextItem();
   }
 
