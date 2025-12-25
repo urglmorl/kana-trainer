@@ -15,9 +15,12 @@ import {ThemeToggleComponent} from '../theme-toggle/theme-toggle.component';
       class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80"
     >
       <div class="container mx-auto flex h-14 items-center justify-between px-4">
-        <h1 class="text-lg font-bold text-gray-900 dark:text-gray-100">
-          {{ 'app.title' | transloco }}
-        </h1>
+        <div class="flex items-center gap-2">
+          <img src="favicon.png" alt="" class="h-8 w-8 rounded-lg" />
+          <h1 class="text-lg font-bold text-gray-900 dark:text-gray-100">
+            {{ 'app.title' | transloco }}
+          </h1>
+        </div>
         <div class="flex items-center gap-2">
           <app-language-switcher />
           <app-theme-toggle />

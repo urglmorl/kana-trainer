@@ -1,17 +1,17 @@
 // Models
-export {
+export type {
   TrainerSettings,
   TrainerMode,
-  DEFAULT_SETTINGS,
   Script,
   Category,
 } from './models/trainer-settings';
+export { DEFAULT_SETTINGS } from './models/trainer-settings';
 
 // Ports
-export { ISettingsRepository } from './ports/settings-repository';
-export { IKanaPoolBuilder } from './ports/kana-pool-builder';
-export { IRandomGenerator } from './ports/random-generator';
-export { IPromptAnswerMapper, PromptAnswer } from './ports/prompt-answer-mapper';
+export type { ISettingsRepository } from './ports/settings-repository';
+export type { IKanaPoolBuilder } from './ports/kana-pool-builder';
+export type { IRandomGenerator } from './ports/random-generator';
+export type { IPromptAnswerMapper, PromptAnswer } from './ports/prompt-answer-mapper';
 
 // Tokens
 export {
@@ -20,4 +20,3 @@ export {
   RANDOM_GENERATOR,
   PROMPT_ANSWER_MAPPER,
 } from './tokens';
-
