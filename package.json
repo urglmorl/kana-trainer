@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "docker:build": "docker build --platform linux/amd64 -t your-registry.example.com/kana-trainer:latest .",
-    "docker:push": "docker push your-registry.example.com/kana-trainer:latest",
+    "docker:build": "docker build --platform linux/amd64 -t registry.urglmorl.dev/kana-trainer:latest .",
+    "docker:push": "docker push registry.urglmorl.dev/kana-trainer:latest",
     "docker:deploy": "npm run docker:build && npm run docker:push"
   },
   "private": true,

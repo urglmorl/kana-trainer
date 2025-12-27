@@ -1,6 +1,6 @@
 services:
   kana-trainer:
-    image: your-registry.example.com/kana-trainer:latest
+    image: registry.urglmorl.dev/kana-trainer:latest
     ports:
       - "8080:80"
     restart: unless-stopped

@@ -1,4 +1,4 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Component, computed, HostListener, inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslocoPipe} from '@jsverse/transloco';
 import {TrainerSessionService} from '../../application/services/trainer-session.service';
@@ -39,6 +39,18 @@ import {ButtonComponent} from '../../shared/ui';
 
       <!-- Main Content Area -->
       <div class="flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center px-4 pb-32">
+
+        <!-- Script Hint Badge (shown when both scripts selected in romaji-to-kana mode) -->
+        @if (shouldShowScriptHint()) {
+          <div class="mb-3 animate-fade-in">
+            <span
+              class="inline-block rounded-full px-2 py-0.5 text-xs font-medium"
+              [class]="currentScriptBadgeClass()"
+            >
+              {{ currentScriptKey() | transloco }}
+            </span>
+          </div>
+        }
 
         <!-- Prompt -->
         <div
@@ -110,6 +122,29 @@ export class TrainerPageComponent implements OnInit {
   readonly session = inject(TrainerSessionService);
   private readonly settingsService = inject(SettingsService);
   private readonly router = inject(Router);
+
+  /** Показывать ли подсказку о типе письменности (когда выбраны обе и режим romaji-to-kana). */
+  readonly shouldShowScriptHint = computed(() => {
+    const scripts = this.settingsService.scripts();
+    const mode = this.settingsService.mode();
+    return scripts.length > 1 && mode === 'romaji-to-kana';
+  });
+
+  /** Ключ локализации для текущего типа письменности. */
+  readonly currentScriptKey = computed(() => {
+    const script = this.session.currentItem()?.script;
+    return script === 'katakana'
+      ? 'settings.scriptOptions.katakana'
+      : 'settings.scriptOptions.hiragana';
+  });
+
+  /** CSS-классы для бейджа письменности. */
+  readonly currentScriptBadgeClass = computed(() => {
+    const script = this.session.currentItem()?.script;
+    return script === 'katakana'
+      ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300'
+      : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
+  });
 
   ngOnInit(): void {
     // Если сессия не активна, перенаправляем на настройки
