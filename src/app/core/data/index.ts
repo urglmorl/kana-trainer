@@ -10,4 +10,6 @@ export const ALL_KANA: KanaItem[] = [
 ];
 
 export { HIRAGANA, KATAKANA, EXTENDED_KATAKANA };
-export type { KanaItem } from './kana.types';
+export type { KanaItem, Row, Category, Script } from './kana.types';
+export { CATEGORY_ROWS, getRowsForCategory, getRowsForCategories } from './row-metadata';
+export type { RowMeta } from './row-metadata';

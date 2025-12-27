@@ -27,11 +27,14 @@ export class TrainerSessionService {
   /** Состояние сессии */
   readonly state = signal<SessionState>('idle');
 
-  /** Счётчик показанных элементов */
+  /** Счётчик показанных элементов в текущем раунде */
   readonly itemCount = signal(0);
 
   /** Размер пула */
   readonly poolSize = signal(0);
+
+  /** Номер текущего раунда (начинается с 1) */
+  readonly round = signal(1);
 
   /** Показан ли ответ */
   readonly isAnswerRevealed = computed(() => this.state() === 'answer');
@@ -63,6 +66,7 @@ export class TrainerSessionService {
     this.randomGenerator.init(pool);
     this.poolSize.set(pool.length);
     this.itemCount.set(0);
+    this.round.set(1);
 
     this.nextItem();
   }
@@ -78,11 +82,18 @@ export class TrainerSessionService {
 
   /**
    * Переходит к следующему элементу.
+   * Если достигнут конец пула, увеличивает номер раунда и сбрасывает счётчик.
    */
   nextItem(): void {
     if (!this.randomGenerator.isInitialized()) {
       console.warn('Session not started');
       return;
+    }
+
+    // Проверяем, начался ли новый раунд (все элементы пройдены)
+    if (this.itemCount() >= this.poolSize()) {
+      this.round.update((r) => r + 1);
+      this.itemCount.set(0);
     }
 
     const item = this.randomGenerator.next();
@@ -99,6 +110,7 @@ export class TrainerSessionService {
     this.state.set('idle');
     this.itemCount.set(0);
     this.poolSize.set(0);
+    this.round.set(1);
     this.currentSettings = null;
   }
 

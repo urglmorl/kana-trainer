@@ -42,13 +42,62 @@
     "start": "Start",
     "validationError": "Please select at least one script and one category",
     "emptyPoolError": "Selected categories have no characters for chosen scripts. Extended katakana only works with katakana.",
-    "poolSize": "{{count}} characters available"
+    "poolSize": "{{count}} characters available",
+    "customize": "Customize",
+    "customizeTitle": "Select rows for {{category}}",
+    "all": "All",
+    "selectAll": "Select all",
+    "allSelected": "All selected",
+    "reset": "Reset",
+    "save": "Save",
+    "cancel": "Cancel",
+    "rowsSelected": "{{count}}/{{total}} rows"
+  },
+  "rows": {
+    "vowel": "Vowels (a-row)",
+    "k": "K-row",
+    "s": "S-row",
+    "t": "T-row",
+    "n": "N-row",
+    "h": "H-row",
+    "m": "M-row",
+    "y": "Y-row",
+    "r": "R-row",
+    "w": "W-row",
+    "g": "G-row",
+    "z": "Z-row",
+    "d": "D-row",
+    "b": "B-row",
+    "p": "P-row",
+    "ky": "Ky-row",
+    "sh": "Sh-row",
+    "ch": "Ch-row",
+    "ny": "Ny-row",
+    "hy": "Hy-row",
+    "my": "My-row",
+    "ry": "Ry-row",
+    "gy": "Gy-row",
+    "j": "J-row",
+    "by": "By-row",
+    "py": "Py-row",
+    "smallVowel": "Small vowels",
+    "f": "F-sounds",
+    "tiDi": "Ti/Di sounds",
+    "cheSheJe": "Che/She/Je",
+    "ts": "Ts-sounds",
+    "wiWeWo": "Wi/We/Wo",
+    "kw": "Kw-sounds",
+    "gw": "Gw-sounds",
+    "v": "V-sounds",
+    "siZi": "Si/Zi",
+    "tyuDyu": "Tyu/Dyu"
   },
   "trainer": {
     "reveal": "Reveal",
     "next": "Next",
     "back": "Back to settings",
-    "itemCount": "Item #{{count}}"
+    "itemCount": "Item #{{count}}",
+    "round": "Round {{round}}"
   },
   "theme": {
     "light": "Light",
@@ -61,4 +110,3 @@
     "no": "Norsk"
   }
 }
-

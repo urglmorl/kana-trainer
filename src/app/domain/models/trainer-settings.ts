@@ -1,4 +1,4 @@
-import type {Category, Script} from '../../core/data/kana.types';
+import type {Category, Row, Script} from '../../core/data/kana.types';
 
 /**
  * Режим тренировки.
@@ -15,6 +15,8 @@ export interface TrainerSettings {
   scripts: Script[];
   /** Выбранные категории */
   categories: Category[];
+  /** Исключённые ряды (инвертированная логика: пустой массив = все ряды включены) */
+  excludedRows: Row[];
   /** Требовать нажатие "Показать" перед "Далее" */
   requireRevealBeforeNext: boolean;
 }
@@ -26,9 +28,10 @@ export const DEFAULT_SETTINGS: TrainerSettings = {
   mode: 'romaji-to-kana',
   scripts: ['hiragana'],
   categories: ['basic'],
+  excludedRows: [],
   requireRevealBeforeNext: true,
 };
 
 // Реэкспорт типов для удобства
-export type { Script, Category } from '../../core/data/kana.types';
+export type { Script, Category, Row } from '../../core/data/kana.types';
 

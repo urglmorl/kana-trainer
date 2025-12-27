@@ -42,13 +42,62 @@
     "start": "Start",
     "validationError": "Velg minst ett skriftsystem og én kategori",
     "emptyPoolError": "Valgte kategorier har ingen tegn for valgte skriftsystemer. Utvidet katakana fungerer bare med katakana.",
-    "poolSize": "{{count}} tegn tilgjengelig"
+    "poolSize": "{{count}} tegn tilgjengelig",
+    "customize": "Tilpass",
+    "customizeTitle": "Velg rader for {{category}}",
+    "all": "Alle",
+    "selectAll": "Velg alle",
+    "allSelected": "Alle valgt",
+    "reset": "Tilbakestill",
+    "save": "Lagre",
+    "cancel": "Avbryt",
+    "rowsSelected": "{{count}}/{{total}} rader"
+  },
+  "rows": {
+    "vowel": "Vokaler (a-rad)",
+    "k": "K-rad",
+    "s": "S-rad",
+    "t": "T-rad",
+    "n": "N-rad",
+    "h": "H-rad",
+    "m": "M-rad",
+    "y": "Y-rad",
+    "r": "R-rad",
+    "w": "W-rad",
+    "g": "G-rad",
+    "z": "Z-rad",
+    "d": "D-rad",
+    "b": "B-rad",
+    "p": "P-rad",
+    "ky": "Ky-rad",
+    "sh": "Sh-rad",
+    "ch": "Ch-rad",
+    "ny": "Ny-rad",
+    "hy": "Hy-rad",
+    "my": "My-rad",
+    "ry": "Ry-rad",
+    "gy": "Gy-rad",
+    "j": "J-rad",
+    "by": "By-rad",
+    "py": "Py-rad",
+    "smallVowel": "Små vokaler",
+    "f": "F-lyder",
+    "tiDi": "Ti/Di lyder",
+    "cheSheJe": "Che/She/Je",
+    "ts": "Ts-lyder",
+    "wiWeWo": "Wi/We/Wo",
+    "kw": "Kw-lyder",
+    "gw": "Gw-lyder",
+    "v": "V-lyder",
+    "siZi": "Si/Zi",
+    "tyuDyu": "Tyu/Dyu"
   },
   "trainer": {
     "reveal": "Vis",
     "next": "Neste",
     "back": "Tilbake til innstillinger",
-    "itemCount": "Element #{{count}}"
+    "itemCount": "Element #{{count}}",
+    "round": "Runde {{round}}"
   },
   "theme": {
     "light": "Lys",
@@ -61,4 +110,3 @@
     "no": "Norsk"
   }
 }
-

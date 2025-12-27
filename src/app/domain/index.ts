@@ -4,6 +4,7 @@ export type {
   TrainerMode,
   Script,
   Category,
+  Row,
 } from './models/trainer-settings';
 export { DEFAULT_SETTINGS } from './models/trainer-settings';
 

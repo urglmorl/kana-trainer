@@ -31,7 +31,12 @@ import {ButtonComponent} from '../../shared/ui';
 
           <!-- Item Counter -->
           <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            {{ 'trainer.itemCount' | transloco: { count: session.itemCount() } }}
+            @if (session.round() > 1) {
+              <span class="mr-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                {{ 'trainer.round' | transloco: { round: session.round() } }}
+              </span>
+            }
+            <span>{{ session.itemCount() }}</span>
             <span class="text-gray-400 dark:text-gray-500">/ {{ session.poolSize() }}</span>
           </div>
         </div>

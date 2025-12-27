@@ -5,12 +5,12 @@ import {ALL_KANA} from '../../core/data';
 
 /**
  * Реализация построителя пула kana-элементов.
- * Фильтрует ALL_KANA по выбранным скриптам и категориям.
+ * Фильтрует ALL_KANA по выбранным скриптам, категориям и рядам.
  */
 @Injectable()
 export class DefaultKanaPoolBuilder implements IKanaPoolBuilder {
   buildPool(settings: TrainerSettings): KanaItem[] {
-    const { scripts, categories } = settings;
+    const { scripts, categories, excludedRows } = settings;
 
     if (scripts.length === 0 || categories.length === 0) {
       return [];
@@ -25,7 +25,10 @@ export class DefaultKanaPoolBuilder implements IKanaPoolBuilder {
         categories.includes(cat)
       );
 
-      return scriptMatch && categoryMatch;
+      // Проверяем, что ряд не исключён
+      const rowEnabled = !excludedRows.includes(item.row);
+
+      return scriptMatch && categoryMatch && rowEnabled;
     });
   }
 }
